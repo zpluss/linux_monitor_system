@@ -1,0 +1,2 @@
+# linux_monitor_system
+实现了对linux服务器信息的监控，并把信息上传到消息服务器
