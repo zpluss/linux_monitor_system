@@ -3,10 +3,14 @@ package com.zplus;
 import com.zplus.activemq.service.MessageProducerService;
 import com.zplus.monitor.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
+@Configuration
+@PropertySource(value = {"file:config.properties"})
 public class Task
 {
     private final DiskService diskService;
@@ -34,7 +38,7 @@ public class Task
         this.systmmService=systmmService;
     }
 
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(cron = "${task.schedule}")
     public void startTask() throws Exception
     {
         diskService.getDiskInfo();
