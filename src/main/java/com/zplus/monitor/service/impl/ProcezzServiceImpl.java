@@ -5,7 +5,8 @@ import com.zplus.monitor.service.ProcezzService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 @Service
@@ -23,47 +24,60 @@ public class ProcezzServiceImpl implements ProcezzService
         int l=0;
         Runtime rt=Runtime.getRuntime();
         Process p= rt.exec("ps -N au");
-        BufferedReader br=new BufferedReader(new InputStreamReader(p.getInputStream()));
-        
-        while((str=br.readLine())!=null)
+        try(BufferedReader br=new BufferedReader(new InputStreamReader(p.getInputStream())))
         {
-            if(++l==1)
-                continue;
-            else if(l==10)
-                break;
-            tokenizer=new StringTokenizer(str);
-            if(!tokenizer.hasMoreTokens())
-                continue;
-            str=tokenizer.nextToken();
-            for(int i=1;i<=11;i++)
+            while ((str = br.readLine()) != null)
             {
-                switch (i)
+                if (++l == 1)
+                    continue;
+                else if (l == 10)
+                    break;
+                tokenizer = new StringTokenizer(str);
+                if (!tokenizer.hasMoreTokens())
+                    continue;
+                str = tokenizer.nextToken();
+                for (int i = 1; i <= 11; i++)
                 {
-                    case 1:procezz.setProcezzUSER(str);
-                        break;
-                    case 2:procezz.setProcezzPID(str);
-                        break;
-                    case 3:procezz.setProcezzCPU(str);
-                        break;
-                    case 4:procezz.setProcezzMEM(str);
-                        break;
-                    case 6:procezz.setProcezzRSS(str);
-                        break;
-                    case 9:procezz.setProcezzSTARTED(str);
-                        break;
-                    case 10:procezz.setProcezzTIME(str);
-                        break;
-                    case 11:procezz.setProcezzCOMMAND(str);
-                        break;
-                        default:break;
+                    switch (i)
+                    {
+                        case 1:
+                            procezz.setProcezzUSER(str);
+                            break;
+                        case 2:
+                            procezz.setProcezzPID(str);
+                            break;
+                        case 3:
+                            procezz.setProcezzCPU(str);
+                            break;
+                        case 4:
+                            procezz.setProcezzMEM(str);
+                            break;
+                        case 6:
+                            procezz.setProcezzRSS(str);
+                            break;
+                        case 9:
+                            procezz.setProcezzSTARTED(str);
+                            break;
+                        case 10:
+                            procezz.setProcezzTIME(str);
+                            break;
+                        case 11:
+                            procezz.setProcezzCOMMAND(str);
+                            break;
+                        default:
+                            break;
+                    }
+                    if (tokenizer.hasMoreTokens())
+                        str = tokenizer.nextToken();
                 }
-                if(tokenizer.hasMoreTokens())
-                    str=tokenizer.nextToken();
+                pList.add(procezz);
+                procezz.setProcezzList(pList);
             }
-            pList.add(procezz);
-            procezz.setProcezzList(pList);
+        }finally
+        {
+            if(p!=null)
+                p.destroy();
         }
-        //System.out.println(procezz.getProcezzList());
         return procezz;
     }
 }

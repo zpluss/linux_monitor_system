@@ -23,60 +23,46 @@ public class SystmmServiceImpl implements SystmmService
         StringTokenizer tokenizer;
         Runtime rt=Runtime.getRuntime();
         Process p=rt.exec("uptime");
+        //有些命令BufferedReader读取不了
         InputStreamReader ir = new InputStreamReader(p.getInputStream());
-        LineNumberReader input = new LineNumberReader(ir);
-        //String result;
-        while ((str = input.readLine()) != null){
-            //result=str;
-            tokenizer=new StringTokenizer(str,", ");
-            while(tokenizer.hasMoreTokens())
+        try(LineNumberReader input = new LineNumberReader(ir))
+        {
+            //String result;
+            while ((str = input.readLine()) != null)
             {
-                str=tokenizer.nextToken();
-                if(str.equalsIgnoreCase("up"))
+                //result=str;
+                tokenizer = new StringTokenizer(str, ", ");
+                while (tokenizer.hasMoreTokens())
                 {
-                    systmm.setServerRuntime(tokenizer.nextToken()+" "+tokenizer.nextToken()+" "+tokenizer.nextToken());
+                    str = tokenizer.nextToken();
+                    if (str.equalsIgnoreCase("up"))
+                    {
+                        systmm.setServerRuntime(tokenizer.nextToken() + " " + tokenizer.nextToken() + " " + tokenizer.nextToken());
+                    } else if (str.equalsIgnoreCase("average:"))
+                    {
+                        systmm.setLoadAverage(tokenizer.nextToken() + " " + tokenizer.nextToken() + " " + tokenizer.nextToken());
+                    }
                 }
-                else if(str.equalsIgnoreCase("average:"))
-                {
-                    systmm.setLoadAverage(tokenizer.nextToken()+" "+tokenizer.nextToken()+" "+tokenizer.nextToken());
-                }
+
             }
-            
         }
-        /*while((str=br.readLine())!=null)
-        {
-            System.out.println(str);
-            tokenizer=new StringTokenizer(str,", ");
-            if(!tokenizer.hasMoreTokens())
-                continue;
-            str=tokenizer.nextToken();
-            System.out.println(str);
-            if(str.equalsIgnoreCase("up"))
-            {
-                systmm.setServerRuntime(tokenizer.nextToken()+" "+tokenizer.nextToken()+" "+tokenizer.nextToken());
-            }
-            else if(str.equalsIgnoreCase("average:"))
-            {
-                systmm.setLoadAverage(tokenizer.nextToken()+" "+tokenizer.nextToken()+" "+tokenizer.nextToken());
-            }
-        }*/
         
-        BufferedReader br;
-        p=rt.exec("ifconfig -a");
-        br=new BufferedReader(new InputStreamReader(p.getInputStream()));
-        int l=0;
-        while((str=br.readLine())!=null)
+        p=rt.exec("ip a");
+        try(BufferedReader br=new BufferedReader(new InputStreamReader(p.getInputStream())))
         {
-            if(++l==3)
-                break;
-            tokenizer=new StringTokenizer(str);
-            while(tokenizer.hasMoreTokens())
+            int l = 0;
+            while ((str = br.readLine()) != null)
             {
-                str=tokenizer.nextToken();
-                if(str.equalsIgnoreCase("inet"))
+                tokenizer = new StringTokenizer(str);
+                while (tokenizer.hasMoreTokens())
                 {
-                    systmm.setIpAddress(tokenizer.nextToken());
-                    break;
+                    str = tokenizer.nextToken();
+                    if (str.equalsIgnoreCase("inet"))
+                    {
+                        if(++l==2)
+                            systmm.setIpAddress(tokenizer.nextToken());
+                        break;
+                    }
                 }
             }
         }
@@ -84,7 +70,7 @@ public class SystmmServiceImpl implements SystmmService
         OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
         str=osmxb.getName()+" Version "+osmxb.getVersion();
         systmm.setServerVersion(str);
-        
+        p.destroy();
         return systmm;
     }
 }

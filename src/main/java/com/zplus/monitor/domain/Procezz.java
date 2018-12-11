@@ -10,13 +10,21 @@ public class Procezz implements Serializable
 {
     private static final long serialVersionUID = -268070216270352135L;
     //ps -N au top -b -n 1
+    //进程用户
     private String procezzUSER;
+    //进程PID
     private String procezzPID;
+    //进程cpu使用率
     private String procezzCPU;
+    //进程内存使用率
     private String procezzMEM;
+    //进程使用内存大小
     private String procezzRSS;
+    //进程开始日期
     private String procezzSTARTED;
+    //进程运行时间
     private String procezzTIME;
+    //进程位置
     private String procezzCOMMAND;
     
     private List<Object> procezzList;
@@ -114,29 +122,6 @@ public class Procezz implements Serializable
     @Override
     public String toString()
     {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"procezzUSER\":\"").append(procezzUSER).append('\"');
-        sb.append(",\"procezzPID\":\"").append(procezzPID).append('\"');
-        sb.append(",\"procezzCPU\":\"").append(procezzCPU).append('\"');
-        sb.append(",\"procezzMEM\":\"").append(procezzMEM).append('\"');
-        sb.append(",\"procezzRSS\":\"").append(procezzRSS).append('\"');
-        sb.append(",\"procezzSTARTED\":\"").append(procezzSTARTED).append('\"');
-        sb.append(",\"procezzTIME\":\"").append(procezzTIME).append('\"');
-        sb.append(",\"procezzCOMMAND\":\"").append(procezzCOMMAND).append('\"');
-        sb.append('}');
-        return sb.toString();
+        return "{" + "\"procezzUSER\":\"" + procezzUSER + '\"' + ",\"procezzPID\":\"" + procezzPID + '\"' + ",\"procezzCPU\":\"" + procezzCPU + '\"' + ",\"procezzMEM\":\"" + procezzMEM + '\"' + ",\"procezzRSS\":\"" + procezzRSS + '\"' + ",\"procezzSTARTED\":\"" + procezzSTARTED + '\"' + ",\"procezzTIME\":\"" + procezzTIME + '\"' + ",\"procezzCOMMAND\":\"" + procezzCOMMAND + '\"' + '}';
     }
-
-    /*@Override
-    public String toString()
-    {
-        return "{" + "procezzUSER=" + procezzUSER  
-                + ", procezzPID=" + procezzPID  
-                + ", procezzCPU=" + procezzCPU
-                + ", procezzMEM=" + procezzMEM 
-                + ", procezzRSS=" + procezzRSS 
-                + ", procezzSTARTED=" + procezzSTARTED 
-                + ", procezzTIME=" + procezzTIME 
-                + ", procezzCOMMAND=" + procezzCOMMAND + "}";
-    }*/
 }

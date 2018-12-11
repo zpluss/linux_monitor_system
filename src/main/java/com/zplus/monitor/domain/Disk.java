@@ -8,36 +8,18 @@ import java.io.Serializable;
 public class Disk implements Serializable
 {
     private static final long serialVersionUID = 3152943094575723035L;
+    //磁盘容量
     private String diskCapacity;
+    //磁盘使用大小
     private String diskUsage;
+    //磁盘使用率
     private String diskUsageRate;
 
     @Override
     public String toString()
     {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"diskCapacity\":\"").append(diskCapacity).append('\"');
-        sb.append(",\"diskUsage\":\"").append(diskUsage).append('\"');
-        sb.append(",\"diskUsageRate\":\"").append(diskUsageRate).append('\"');
-        sb.append('}');
-        return sb.toString();
+        return "{" + "\"diskCapacity\":\"" + diskCapacity + '\"' + ",\"diskUsage\":\"" + diskUsage + '\"' + ",\"diskUsageRate\":\"" + diskUsageRate + '\"' + '}';
     }
-
-    /*public String toString()
-    {
-        return "{" + "diskCapacity=" + diskCapacity 
-                + ", diskUsage=" + diskUsage 
-                + ", diskUsageRate=" + diskUsageRate  + "}";
-        //return "diskCapacity:"+diskCapacity+",diskUsage:"+diskUsage+",diskUsageRate:"+diskUsageRate;
-        *//*JSONObject jsonInfo = new JSONObject();
-        try {
-            jsonInfo.put("diskCapacity", this.diskCapacity);
-            jsonInfo.put("diskUsage", this.diskUsage);
-            jsonInfo.put("diskUsageRate", this.diskUsageRate);
-            
-        } catch (JSONException e) {}
-        return jsonInfo.toString();*//*
-    }*/
 
     public String getDiskCapacity()
     {

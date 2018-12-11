@@ -8,9 +8,13 @@ import java.io.Serializable;
 public class Systmm implements Serializable
 {
     private static final long serialVersionUID = 787312026175736398L;
+    //ip地址
     private String ipAddress;     //ifconfig -a
+    //系统运行时间
     private String serverRuntime; //uptime
+    //系统版本
     private String serverVersion; //cat /etc/redhat-release
+    //系统1，5，15分钟平均负载
     private String loadAverage;
 
     public String getIpAddress()
@@ -56,21 +60,6 @@ public class Systmm implements Serializable
     @Override
     public String toString()
     {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"ipAddress\":\"").append(ipAddress).append('\"');
-        sb.append(",\"serverRuntime\":\"").append(serverRuntime).append('\"');
-        sb.append(",\"serverVersion\":\"").append(serverVersion).append('\"');
-        sb.append(",\"loadAverage\":\"").append(loadAverage).append('\"');
-        sb.append('}');
-        return sb.toString();
+        return "{" + "\"ipAddress\":\"" + ipAddress + '\"' + ",\"serverRuntime\":\"" + serverRuntime + '\"' + ",\"serverVersion\":\"" + serverVersion + '\"' + ",\"loadAverage\":\"" + loadAverage + '\"' + '}';
     }
-
-    /*@Override
-    public String toString()
-    {
-        return "{" + "ipAddress=" + ipAddress  
-                + ", serverRuntime=" + serverRuntime 
-                + ", serverVersion=" + serverVersion 
-                + ", loadAverage=" + loadAverage + "}";
-    }*/
 }

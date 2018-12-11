@@ -22,22 +22,22 @@ public class MemoryServiceImpl implements MemoryService
     @Override
     public Memory getMemoryInfo() throws Exception
     {
-        int kb=1024;
+        double kb=1024;
         OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 
         // 操作系统
         String osName = System.getProperty("os.name");
         // 总的物理内存
-        long memoryCapacity = osmxb.getTotalPhysicalMemorySize() / kb;
+        long memoryCapacity = osmxb.getTotalPhysicalMemorySize() ;
         // 剩余的物理内存
-        long freePhysicalMemorySize = osmxb.getFreePhysicalMemorySize() / kb;
+        long freePhysicalMemorySize = osmxb.getFreePhysicalMemorySize();
         // 已使用的物理内存
-        long memoryUsage = (osmxb.getTotalPhysicalMemorySize() - osmxb.getFreePhysicalMemorySize()) / kb;
+        long memoryUsage = (osmxb.getTotalPhysicalMemorySize() - osmxb.getFreePhysicalMemorySize());
         //内存使用率
         double memoryUsageRate= (double)memoryUsage/memoryCapacity;
         
-        memory.setMemoryCapacity(memoryCapacity+"");
-        memory.setMemoryUsage(memoryUsage+"");
+        memory.setMemoryCapacity(memoryCapacity/1024.0/1024.0/1024.0+"");
+        memory.setMemoryUsage(memoryUsage/1024.0/1024.0/1024.0+"");
         memory.setMemoryUsageRate(memoryUsageRate+"");
         return memory;
     }

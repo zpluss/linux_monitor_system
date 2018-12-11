@@ -9,9 +9,13 @@ public class Cpu implements Serializable
 {
 
     private static final long serialVersionUID = 3843927512655788412L;
+    //cpu型号
     private String cpuModel;
+    //cpu个数
     private String cpuNumber;
+    //cpu核数
     private String cpuCoreNumber;
+    //cpu使用率
     private String cpuUsageRate;
     
     public String getCpuModel()
@@ -53,25 +57,10 @@ public class Cpu implements Serializable
     {
         this.cpuUsageRate = cpuUsageRate;
     }
-
-    /*@Override
-    public String toString()
-    {
-        return "{" + "'cpuModel':'" + cpuModel +'\''  
-                + ", 'cpuNumber':'" + cpuNumber +'\''
-                + ", cpuCoreNumber=" + cpuCoreNumber +'\''
-                + ", cpuUsageRate=" + cpuUsageRate  + "}";
-    }*/
-
+    
     @Override
     public String toString()
     {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"cpuModel\":\"").append(cpuModel).append('\"');
-        sb.append(",\"cpuNumber\":\"").append(cpuNumber).append('\"');
-        sb.append(",\"cpuCoreNumber\":\"").append(cpuCoreNumber).append('\"');
-        sb.append(",\"cpuUsageRate\":\"").append(cpuUsageRate).append('\"');
-        sb.append('}');
-        return sb.toString();
+        return "{" + "\"cpuModel\":\"" + cpuModel + '\"' + ",\"cpuNumber\":\"" + cpuNumber + '\"' + ",\"cpuCoreNumber\":\"" + cpuCoreNumber + '\"' + ",\"cpuUsageRate\":\"" + cpuUsageRate + '\"' + '}';
     }
 }
