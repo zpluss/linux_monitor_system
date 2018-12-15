@@ -80,8 +80,6 @@ public class CpuServiceImpl implements CpuService
         {
             if(br!=null)
                 br.close();
-            if(p!=null)
-                p.destroy();
         }
 
         //获取jvm可调用的处理器数量，这里当作cpu个数

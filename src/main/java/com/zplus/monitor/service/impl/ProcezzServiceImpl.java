@@ -70,14 +70,11 @@ public class ProcezzServiceImpl implements ProcezzService
                     if (tokenizer.hasMoreTokens())
                         str = tokenizer.nextToken();
                 }
-                pList.add(procezz);
-                procezz.setProcezzList(pList);
+                //不能add(procezz)
+                pList.add(procezz.toString());
             }
-        }finally
-        {
-            if(p!=null)
-                p.destroy();
         }
+        procezz.setProcezzList(pList);
         return procezz;
     }
 }

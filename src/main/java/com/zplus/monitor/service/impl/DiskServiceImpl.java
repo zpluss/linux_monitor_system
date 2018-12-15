@@ -45,10 +45,6 @@ public class DiskServiceImpl implements DiskService
         } catch (Exception e)
         {
             e.printStackTrace();
-        } finally
-        {
-            if (p != null)
-                p.destroy();
         }
         return disk;
     }

@@ -40,7 +40,7 @@ public class MessageProducerServiceImpl implements MessageProducerService
         map.put("Disk",disk.toString());
         map.put("Memory",memory.toString());
         map.put("Cpu",cpu.toString());
-        map.put("Process",procezz.getProcezzList().toString());
+        map.put("Process",procezz.getProcezzList());
         map.put("System",systmm.toString());
         this.jmsTemplate.convertAndSend(this.queue,map);
     }
