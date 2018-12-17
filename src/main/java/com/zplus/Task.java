@@ -1,51 +1,41 @@
 package com.zplus;
 
 import com.zplus.activemq.service.MessageProducerService;
-import com.zplus.monitor.service.*;
+import com.zplus.monitor.service.impl.AsyncServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.CompletableFuture;
+
 @Component
 @Configuration
 @PropertySource(value = {"file:config.properties"})
 public class Task
 {
-    private final DiskService diskService;
-    
-    private final CpuService cpuService;
-    
-    private final MemoryService memoryService;
-    
-    private final ProcezzService procezzService;
-    
     private final MessageProducerService messageProducerService;
     
-    private final SystmmService systmmService;
+    private final AsyncServiceImpl asyncService;
     
     @Autowired
-    public Task(DiskService diskService, CpuService cpuService, 
-                MemoryService memoryService, ProcezzService procezzService, 
-                MessageProducerService messageProducerService,SystmmService systmmService)
+    public Task(
+                MessageProducerService messageProducerService,AsyncServiceImpl asyncService)
     {
-        this.diskService = diskService;
-        this.cpuService = cpuService;
-        this.memoryService = memoryService;
-        this.procezzService = procezzService;
         this.messageProducerService = messageProducerService;
-        this.systmmService=systmmService;
+        this.asyncService=asyncService;
     }
 
     @Scheduled(cron = "${task.schedule}")
     public void startTask() throws Exception
     {
-        diskService.getDiskInfo();
-        memoryService.getMemoryInfo();
-        cpuService.getCpuInfo();
-        procezzService.getProcessInfo();
-        systmmService.getSystemInfo();
+        CompletableFuture futureCpu=asyncService.doGetCpu();
+        CompletableFuture futureDisk=asyncService.doGetDisk();
+        CompletableFuture futureMem=asyncService.doGetMemory();
+        CompletableFuture futureProcezz=asyncService.doGetProcezz();
+        CompletableFuture futureSystmm=asyncService.doGetSystmm();
+        CompletableFuture.allOf(futureCpu,futureDisk,futureMem,futureProcezz,futureSystmm).join();
         this.messageProducerService.sendMessage();
     }
 }

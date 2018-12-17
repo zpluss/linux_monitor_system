@@ -30,7 +30,7 @@ public class ProcezzServiceImpl implements ProcezzService
             {
                 if (++l == 1)
                     continue;
-                else if (l == 10)
+                else if (l == 12)
                     break;
                 tokenizer = new StringTokenizer(str);
                 if (!tokenizer.hasMoreTokens())
