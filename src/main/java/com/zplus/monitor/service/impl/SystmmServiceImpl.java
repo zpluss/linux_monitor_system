@@ -1,8 +1,8 @@
-package com.zplus.monitor.service.impl;
+package com.hzsr.ssm.mweb.monitor.service.impl;
 
+import com.hzsr.ssm.mweb.monitor.service.SystmmService;
 import com.sun.management.OperatingSystemMXBean;
-import com.zplus.monitor.domain.Systmm;
-import com.zplus.monitor.service.SystmmService;
+import com.hzsr.ssm.mweb.monitor.domain.Systmm;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

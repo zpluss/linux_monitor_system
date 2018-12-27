@@ -1,7 +1,7 @@
-package com.zplus.monitor.service.impl;
+package com.hzsr.ssm.mweb.monitor.service.impl;
 
-import com.zplus.monitor.domain.Disk;
-import com.zplus.monitor.service.DiskService;
+import com.hzsr.ssm.mweb.monitor.domain.Disk;
+import com.hzsr.ssm.mweb.monitor.service.DiskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

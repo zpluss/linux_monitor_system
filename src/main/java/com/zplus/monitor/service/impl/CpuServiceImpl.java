@@ -1,7 +1,7 @@
-package com.zplus.monitor.service.impl;
+package com.hzsr.ssm.mweb.monitor.service.impl;
 
-import com.zplus.monitor.domain.Cpu;
-import com.zplus.monitor.service.CpuService;
+import com.hzsr.ssm.mweb.monitor.domain.Cpu;
+import com.hzsr.ssm.mweb.monitor.service.CpuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

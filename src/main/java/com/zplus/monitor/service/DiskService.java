@@ -1,7 +1,7 @@
-package com.zplus.monitor.service;
+package com.hzsr.ssm.mweb.monitor.service;
 
 
-import com.zplus.monitor.domain.Disk;
+import com.hzsr.ssm.mweb.monitor.domain.Disk;
 
 public interface DiskService
 {

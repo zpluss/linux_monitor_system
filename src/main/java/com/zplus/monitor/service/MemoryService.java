@@ -1,6 +1,6 @@
-package com.zplus.monitor.service;
+package com.hzsr.ssm.mweb.monitor.service;
 
-import com.zplus.monitor.domain.Memory;
+import com.hzsr.ssm.mweb.monitor.domain.Memory;
 
 public interface MemoryService
 {

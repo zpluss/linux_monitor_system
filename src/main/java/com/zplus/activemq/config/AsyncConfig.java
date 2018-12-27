@@ -1,4 +1,4 @@
-package com.zplus.activemq.config;
+package com.hzsr.ssm.mweb.activemq.config;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;

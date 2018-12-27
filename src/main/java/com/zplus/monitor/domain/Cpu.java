@@ -1,4 +1,4 @@
-package com.zplus.monitor.domain;
+package com.hzsr.ssm.mweb.monitor.domain;
 
 import org.springframework.stereotype.Repository;
 

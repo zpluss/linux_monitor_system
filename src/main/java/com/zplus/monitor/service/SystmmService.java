@@ -1,6 +1,6 @@
-package com.zplus.monitor.service;
+package com.hzsr.ssm.mweb.monitor.service;
 
-import com.zplus.monitor.domain.Systmm;
+import com.hzsr.ssm.mweb.monitor.domain.Systmm;
 
 public interface SystmmService
 {

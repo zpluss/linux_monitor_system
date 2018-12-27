@@ -1,8 +1,8 @@
-package com.zplus.monitor.service.impl;
+package com.hzsr.ssm.mweb.monitor.service.impl;
 
 import com.sun.management.OperatingSystemMXBean;
-import com.zplus.monitor.domain.Memory;
-import com.zplus.monitor.service.MemoryService;
+import com.hzsr.ssm.mweb.monitor.domain.Memory;
+import com.hzsr.ssm.mweb.monitor.service.MemoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

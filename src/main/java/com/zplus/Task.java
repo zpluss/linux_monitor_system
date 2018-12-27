@@ -1,10 +1,9 @@
-package com.zplus;
+package com.hzsr.ssm.mweb;
 
-import com.zplus.activemq.service.MessageProducerService;
-import com.zplus.monitor.service.impl.AsyncServiceImpl;
+import com.hzsr.ssm.mweb.activemq.service.MessageProducerService;
+import com.hzsr.ssm.mweb.monitor.service.impl.AsyncServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,6 @@ import java.util.concurrent.CompletableFuture;
 
 @Component
 @Configuration
-@PropertySource(value = {"file:config.properties"})
 public class Task
 {
     private final MessageProducerService messageProducerService;

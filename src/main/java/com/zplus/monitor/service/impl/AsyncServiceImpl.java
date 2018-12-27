@@ -1,7 +1,7 @@
-package com.zplus.monitor.service.impl;
+package com.hzsr.ssm.mweb.monitor.service.impl;
 
-import com.zplus.monitor.domain.*;
-import com.zplus.monitor.service.*;
+import com.hzsr.ssm.mweb.monitor.domain.*;
+import com.hzsr.ssm.mweb.monitor.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

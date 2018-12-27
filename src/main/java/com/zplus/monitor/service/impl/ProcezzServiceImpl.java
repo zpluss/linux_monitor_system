@@ -1,7 +1,7 @@
-package com.zplus.monitor.service.impl;
+package com.hzsr.ssm.mweb.monitor.service.impl;
 
-import com.zplus.monitor.domain.Procezz;
-import com.zplus.monitor.service.ProcezzService;
+import com.hzsr.ssm.mweb.monitor.domain.Procezz;
+import com.hzsr.ssm.mweb.monitor.service.ProcezzService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

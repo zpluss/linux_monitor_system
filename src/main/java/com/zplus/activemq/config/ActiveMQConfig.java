@@ -1,9 +1,10 @@
-package com.zplus.activemq.config;
+package com.hzsr.ssm.mweb.activemq.config;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.*;
@@ -11,7 +12,6 @@ import org.springframework.jms.support.converter.*;
 import javax.jms.Queue;
 
 @Configuration
-@PropertySource(value = {"file:config.properties"})
 @EnableJms
 public class ActiveMQConfig
 {
